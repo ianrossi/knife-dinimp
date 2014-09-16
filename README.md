@@ -5,6 +5,8 @@ This is the beginning of my idea for a knife plugin that will help do some asses
 
 # Usage
 
+Place the .rb files in ```~/.chef/plugins/knife``` and then use the commands below.
+
 ## knife dinimp compare [COOKBOOK_DIR]
 
 This compares the versions of all the cookbooks in the cookbooks directory passed to the command with the lastest version available in the Chef Supermarket. It gives a report of which ones are old, up-to-date or no longer in the Supermaket. I have plans to add a ```--gist``` option that would send the output to a secret gist.
