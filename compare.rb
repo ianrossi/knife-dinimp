@@ -15,7 +15,7 @@ MANIFESTS = %w(metadata.json metadata.yml metadata.yaml metadata.rb)
 cookbook_paths = Dir.glob([ARGV[0], '/*/'].join)
 
 cookbook_paths.sort.each do |cookbook_path|
-  
+
   cookbook_name = File.basename(cookbook_path)
 
   manifest_path = MANIFESTS.map{|manifest| File.join(cookbook_path, manifest)}.find{|s| File.exists?(s)}
@@ -44,6 +44,6 @@ cookbook_paths.sort.each do |cookbook_path|
   else
     response.return!(request, result, &block)
   end
-  
+
 end
 
