@@ -3,7 +3,7 @@
 require 'chef/knife'
 
 module DinnerImpossible
-  class Dinimp < Chef::Knife
+  class DinimpCompare < Chef::Knife
 
     deps do
       require 'rubygems'
@@ -12,7 +12,6 @@ module DinnerImpossible
       require 'chef/json_compat'
       require 'chef/cookbook/metadata'
       require 'rest-client'
-      require 'colorize'
     end
 
     banner "knife dinimp compare VALUE (options)"
@@ -37,7 +36,6 @@ module DinnerImpossible
         when ".rb"
           metadata = ::Chef::Cookbook::Metadata.new
           metadata.from_file(manifest_path)
-          puts
           version = metadata.version
         when ".json"
           version = JSON.parse(File.read(manifest_path))['version']
@@ -50,11 +48,11 @@ module DinnerImpossible
           response
           latest_version = JSON.parse(response)['version']
           report = "#{cookbook_name}, using: #{version}, latest: #{latest_version}"
-          puts (version == latest_version) ? "(current) #{report.green}" : "(old) #{report.red}"
+          version == latest_version ? ui.info(ui.color("(current) #{report}", :green)) : ui.info(ui.color("(old) #{report}", :red))
         when 404
           response 
           report = "(unknown) #{cookbook_name}, using: #{version}, latest: Not found, 404 from Supermarket"
-          puts report.yellow
+          ui.info(ui.color(report, :yellow))
         else
           response.return!(request, result, &block)
         end
