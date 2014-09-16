@@ -1,15 +1,17 @@
 Knife Dinner Impossible Plugin
 ============
 
-This is the beginning of my idea for a knife plugin that will help do some assessment and discovery work about a chef-repo with the goal of making it better. I would love some input on this, including if it’s just silly.
-knife dinimp compare
+This is the beginning of my idea for a knife plugin that will help do some assessment and discovery work about a chef-repo with the goal of making it better. I would love some input on this.
 
-This would compare the versions of all the cookbooks in the cookbooks directory with the lastest version available in the Chef Supermarket and give a report of which ones are old, up-to-date or no longer in the Supermaket. Would be cool if it could output the report to secret gist by default in addition to standard output.
+# Usage
 
-Here is what the output looks like with the current test code I have in place: (it's colorized in the terminal)
+## knife dinimp compare [COOKBOOK_DIR]
+
+This compares the versions of all the cookbooks in the cookbooks directory passed to the command with the lastest version available in the Chef Supermarket. It gives a report of which ones are old, up-to-date or no longer in the Supermaket. I have plans to add a ```--gist``` option that would send the output to a secret gist.
+
+Here is what the output looks like: (it's colorized in the terminal)
 
 ```
-
 (current) 7-zip, using: 1.0.2, latest: 1.0.2
 (old) ant, using: 1.0.0, latest: 1.0.2
 (old) apache2, using: 1.4.2, latest: 2.0.0
@@ -91,8 +93,6 @@ Here is what the output looks like with the current test code I have in place: (
 (current) zlib, using: 2.0.0, latest: 2.0.0
 ```
 
+## knife dinimp diff
 
-
-knife dinimp diff
-
-This would diff each cookbook in the cookbooks directory with the Supermarket’s cookbook of the same version and will send the diff output to the terminal. A secret gist by default would also be cool.
+This command isn't developed yet, but this would diff each cookbook in the cookbooks directory with the Supermarket’s cookbook of the same version and will send the diff output to the terminal. A secret gist by default would also be cool.
